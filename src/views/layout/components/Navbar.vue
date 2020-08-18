@@ -1,21 +1,29 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
-		<div class="logo">
-			<img class="user-avatar" :src="logo">OpenAuth.Pro
-		</div>
+    <div class="logo">
+      <img class="user-avatar" :src="logo" />NTPC
+    </div>
     <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
     <el-dropdown class="avatar-container" @command="handleCommand" trigger="click">
       <div class="avatar-wrapper">
-				欢迎您，{{name}}
+        歡迎您，{{name}}
         <i class="el-icon-caret-bottom"></i>
       </div>
       <el-dropdown-menu class="user-dropdown" slot="dropdown">
         <el-dropdown-item command="handleGoProfile">
-					<span>个人中心</span>
-				</el-dropdown-item>
+          <span>个人中心</span>
+        </el-dropdown-item>
         <el-dropdown-item>
-					<span>切换主题 <el-switch :active-value="1" :inactive-value="0" style="margin-left: 5px;" v-model="theme" /></span>
-				</el-dropdown-item>
+          <span>
+            切换主题
+            <el-switch
+              :active-value="1"
+              :inactive-value="0"
+              style="margin-left: 5px;"
+              v-model="theme"
+            />
+          </span>
+        </el-dropdown-item>
         <el-dropdown-item command="logout" divided>
           <span>退出</span>
         </el-dropdown-item>
@@ -25,76 +33,76 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import Hamburger from '@/components/Hamburger'
-import logo from '@/assets/logo.png?imageView2/1/w/80/h/80'
+import { mapGetters, mapActions } from "vuex";
+import Hamburger from "@/components/Hamburger";
+import logo from "@/assets/logo.png?imageView2/1/w/80/h/80";
 
 export default {
-  data: function() {
+  data: function () {
     return {
       logo: logo,
-      theme: 1
-    }
+      theme: 1,
+    };
   },
   components: {
-    Hamburger
+    Hamburger,
   },
   computed: {
-    ...mapGetters(['sidebar', 'isIdentityAuth', 'name', 'themeStatus'])
+    ...mapGetters(["sidebar", "isIdentityAuth", "name", "themeStatus"]),
   },
   watch: {
     theme() {
-      this.toggleClass(document.body, 'custom-theme')
-    }
+      this.toggleClass(document.body, "custom-theme");
+    },
   },
   mounted() {
-    this.theme = Number(this.themeStatus)
-    this.toggleClass(document.body, 'custom-theme')
+    this.theme = Number(this.themeStatus);
+    this.toggleClass(document.body, "custom-theme");
   },
   methods: {
-    ...mapActions([
-      'signOutOidc',
-      'saveTheme'
-    ]),
+    ...mapActions(["signOutOidc", "saveTheme"]),
     toggleClass(element, className) {
       if (!element || !className) {
-        return
+        return;
       }
-      let classString = element.className
-      const nameIndex = classString.indexOf(className)
+      let classString = element.className;
+      const nameIndex = classString.indexOf(className);
       if (nameIndex === -1) {
-        classString += '' + className
+        classString += "" + className;
       } else {
         classString =
           classString.substr(0, nameIndex) +
-          classString.substr(nameIndex + className.length)
+          classString.substr(nameIndex + className.length);
       }
-      element.className = this.theme === 1 ? classString : ''
-      this.saveTheme(this.theme)
+      element.className = this.theme === 1 ? classString : "";
+      this.saveTheme(this.theme);
     },
     toggleSideBar() {
-      this.$store.dispatch('ToggleSideBar')
+      this.$store.dispatch("ToggleSideBar");
     },
     logout() {
       if (this.isIdentityAuth) {
-        this.signOutOidc()
+        this.signOutOidc();
       } else {
-        this.$store.dispatch('LogOut').then(() => {
-          location.reload() // 为了重新实例化vue-router对象 避免bug
-        })
+        this.$store.dispatch("LogOut").then(() => {
+          location.reload(); // 为了重新实例化vue-router对象 避免bug
+        });
       }
     },
     handleGoProfile() {
-      this.$router.push('/profile')
+      this.$router.push("/profile");
     },
     handleCommand(name) {
-      if(!name) return
-      this[name]()
-    }
-  }
-}
+      if (!name) return;
+      this[name]();
+    },
+  },
+};
 </script>
 
-<style rel="stylesheet/scss" lang="scss" scoped>
-
+<style rel="stylesheet/scss" lang="scss">
+.navbar {
+  display: flex;
+  align-items: center;
+}
 </style>

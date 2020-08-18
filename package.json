@@ -1,7 +1,7 @@
 {
   "name": "openauth-pro",
   "version": "3.0.0",
-  "description": "OpenAuth.Pro--OpenAuth.CoreÆóÒµ°æ",
+  "description": "OpenAuth.Pro--OpenAuth.Coreï¿½ï¿½Òµï¿½ï¿½",
   "author": "yubaolee <yubaolee@163.com>",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -31,7 +31,10 @@
     "vue-router": "3.0.1",
     "vuedraggable": "^2.23.2",
     "vuex": "3.0.1",
-    "vuex-oidc": "^2.0.1"
+    "vuex-oidc": "^2.0.1",
+    "vue-sweetalert2": "^3.0.6",
+    "vue-loading-overlay": "^3.3.2",
+    "moment": "^2.26.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.3.0",

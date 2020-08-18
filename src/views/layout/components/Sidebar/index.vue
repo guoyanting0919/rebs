@@ -6,9 +6,9 @@
       :default-active="$route.path"
       :collapse="isCollapse"
       router
-      :background-color="themeStatus ? '#304156' : ''"
-      :text-color="themeStatus ? '#bfcbd9' : ''"
-      :active-text-color="themeStatus ? '#409EFF' : '#409eff'"
+      :background-color="themeStatus ? '#fff' : ''"
+      :text-color="themeStatus ? '#3b3b3b' : ''"
+      :active-text-color="themeStatus ? '#f3971a' : '#f3971a'"
     >
       <sidebar-item v-for="route in routes" :key="route.name" :item="route" :base-path="route.path"></sidebar-item>
     </el-menu>
@@ -16,28 +16,31 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import SidebarItem from './SidebarItem'
+import { mapGetters } from "vuex";
+import SidebarItem from "./SidebarItem";
 
 export default {
   components: { SidebarItem },
   data() {
     return {
-      routes: []
-    }
+      routes: [],
+    };
   },
   computed: {
-    ...mapGetters(['sidebar', 'permission_routers', 'themeStatus']),
+    ...mapGetters(["sidebar", "permission_routers", "themeStatus"]),
     isCollapse() {
-      return !this.sidebar.opened
-    }
+      return !this.sidebar.opened;
+    },
   },
   created() {
-    this.permission_routers.length > 0 && this.permission_routers.forEach(item => {
-      if(item.name === 'layout'){
-        this.routes = item.children.sort((a, b) => a.meta.sortNo - b.meta.sortNo)
-      }
-    })
+    this.permission_routers.length > 0 &&
+      this.permission_routers.forEach((item) => {
+        if (item.name === "layout") {
+          this.routes = item.children.sort(
+            (a, b) => a.meta.sortNo - b.meta.sortNo
+          );
+        }
+      });
   },
-}
+};
 </script>
