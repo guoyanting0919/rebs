@@ -42,7 +42,7 @@ export const constantRouterMap = [
     meta: { sortNo: 0 },
     hidden: true,
   },
-  // // 把二级路由提前加到路由表，实现路由缓存
+  // // 把二級路由提前加到路由表，實現路由緩存
   // {
   //   path: '/flowschemes/add',
   //   component: Layout,
@@ -66,7 +66,7 @@ export const constantRouterMap = [
     },
   },
   {
-    path: "/oidcRedirect", // oidc临时跳转页面
+    path: "/oidcRedirect", // oidc臨時跳轉頁面
     name: "oidcRedirect",
     meta: { sortNo: 0 },
     component: oidcRedirect,
@@ -81,14 +81,14 @@ export const constantRouterMap = [
       {
         path: "/dashboard",
         name: "dashboard",
-        meta: { title: "主页", icon: "iconfont icon-zhuye", sortNo: 0 },
+        meta: { title: "主頁", icon: "iconfont icon-zhuye", sortNo: 0 },
         component: () => import("@/views/dashboard/index"),
       },
       {
         path: "/profile",
         name: "profile",
         hidden: true,
-        meta: { title: "个人中心", icon: "guide", sortNo: 0 },
+        meta: { title: "個人中心", icon: "guide", sortNo: 0 },
         component: () => import("@/views/usermanager/profile"),
       },
       {
@@ -96,7 +96,7 @@ export const constantRouterMap = [
         path: "/iframePage/:code",
         name: "iframePage",
         hidden: true,
-        meta: { title: "接口文档", icon: "guide", sortNo: 0 },
+        meta: { title: "接口文檔", icon: "guide", sortNo: 0 },
         component: () => import("@/views/iframePage/index"),
       },
     ],
@@ -109,7 +109,7 @@ export const constantRouterMap = [
   //   children: [{
   //     path: '/profile',
   //     name: 'profile',
-  //     meta: { title: '个人中心', icon: 'guide', sortNo: 0 },
+  //     meta: { title: '個人中心', icon: 'guide', sortNo: 0 },
   //     component: () => import('@/views/usermanager/profile')
   //   }]
   // }
@@ -120,14 +120,14 @@ export const constantRouterMap = [
   //   children: [{
   //     path: '',
   //     name: 'swagger',
-  //     meta: { title: '接口文档', icon: 'guide', sortNo: 0 },
+  //     meta: { title: '接口文檔', icon: 'guide', sortNo: 0 },
   //     component: () => import('@/views/swagger/index')
   //   }]
   // }
 ];
 
 var router = new Router({
-  // mode: 'history', //后端支持可开
+  // mode: 'history', //後端支持可開
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap,
 });

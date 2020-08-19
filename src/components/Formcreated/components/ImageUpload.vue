@@ -1,45 +1,92 @@
 <template>
-  <div class="img-uplaod-container"
-    :id="uploadId"
-  >
-    <draggable class="drag-img-list"
+  <div class="img-uplaod-container" :id="uploadId">
+    <draggable
+      class="drag-img-list"
       v-model="fileList"
       v-bind="{group: uploadId, ghostClass: 'ghost', animation: 200}"
       :no-transition-on-drag="true"
     >
-      <div 
+      <div
         :id="item.key"
         :style="{width: width+'px', height: height+'px'}"
         :class="{uploading: item.status=='uploading', 'is-success': item.status=='success', 'is-diabled': disabled}"
-        class="upload-file" v-for="(item) in fileList" :key="item.key">
+        class="upload-file"
+        v-for="(item) in fileList"
+        :key="item.key"
+      >
         <img v-if="item.isImg" :src="item.url" />
         <i v-else class="el-icon-files" style="font-size: 40px;color: #4ca1ff;" title="文件"></i>
 
-        <el-progress v-if="item.status=='uploading'" :width="miniWidth*0.9" class="upload-progress" type="circle" :percentage="item.percent"></el-progress>
+        <el-progress
+          v-if="item.status=='uploading'"
+          :width="miniWidth*0.9"
+          class="upload-progress"
+          type="circle"
+          :percentage="item.percent"
+        ></el-progress>
 
         <label class="item-status" v-if="item.status=='success'">
           <i class="el-icon-upload-success el-icon-check"></i>
         </label>
 
         <div class="uplaod-action" :style="{height: miniWidth / 4 + 'px'}">
-          <i :class="item.isImg ? 'el-icon-view' : 'el-icon-download'" :title="item.isImg ? '预览' : '下载'" @click="handlePreviewFile(item)" :style="{'font-size': miniWidth/8+'px'}"></i>
-          <i v-if="isEdit && !disabled" class="el-icon-refresh" :title="'替换'" @click="handleEdit(item.key)" :style="{'font-size': miniWidth/8+'px'}"></i>
-          <i v-if="isDelete && fileList.length > min && !disabled" class="el-icon-delete" :title="'删除'" @click="handleRemove(item.key)" :style="{'font-size': miniWidth/8+'px'}"></i>
+          <i
+            :class="item.isImg ? 'el-icon-view' : 'el-icon-download'"
+            :title="item.isImg ? '預覽' : '下載'"
+            @click="handlePreviewFile(item)"
+            :style="{'font-size': miniWidth/8+'px'}"
+          ></i>
+          <i
+            v-if="isEdit && !disabled"
+            class="el-icon-refresh"
+            :title="'替換'"
+            @click="handleEdit(item.key)"
+            :style="{'font-size': miniWidth/8+'px'}"
+          ></i>
+          <i
+            v-if="isDelete && fileList.length > min && !disabled"
+            class="el-icon-delete"
+            :title="'刪除'"
+            @click="handleRemove(item.key)"
+            :style="{'font-size': miniWidth/8+'px'}"
+          ></i>
         </div>
       </div>
     </draggable>
 
-    <div class="el-upload el-upload--picture-card"
+    <div
+      class="el-upload el-upload--picture-card"
       :class="{'is-disabled': disabled}"
       v-show="(!isQiniu || (isQiniu && token)) && fileList.length < length"
       :style="{width: width+'px', height: height+'px'}"
       @click.self="handleAdd"
     >
-      <i class="el-icon-plus" @click.self="handleAdd" :style="{fontSize:miniWidth/4+'px',marginTop: (-miniWidth/8)+'px', marginLeft: (-miniWidth/8)+'px'}"></i>
+      <i
+        class="el-icon-plus"
+        @click.self="handleAdd"
+        :style="{fontSize:miniWidth/4+'px',marginTop: (-miniWidth/8)+'px', marginLeft: (-miniWidth/8)+'px'}"
+      ></i>
       <!-- <input accept="image/*" v-if="multiple"  multiple ref="uploadInput" @change="handleChange" type="file" :style="{width: 0, height: 0}" name="files" class="el-upload__input upload-input">
-      <input accept="image/*" v-else ref="uploadInput" @change="handleChange" type="file" :style="{width:0, height: 0}" name="files" class="el-upload__input upload-input"> -->
-      <input v-if="multiple"  multiple ref="uploadInput" @change="handleChange" type="file" :style="{width: 0, height: 0}" name="files" class="el-upload__input upload-input">
-      <input v-else ref="uploadInput" @change="handleChange" type="file" :style="{width:0, height: 0}" name="files" class="el-upload__input upload-input">
+      <input accept="image/*" v-else ref="uploadInput" @change="handleChange" type="file" :style="{width:0, height: 0}" name="files" class="el-upload__input upload-input">-->
+      <input
+        v-if="multiple"
+        multiple
+        ref="uploadInput"
+        @change="handleChange"
+        type="file"
+        :style="{width: 0, height: 0}"
+        name="files"
+        class="el-upload__input upload-input"
+      />
+      <input
+        v-else
+        ref="uploadInput"
+        @change="handleChange"
+        type="file"
+        :style="{width:0, height: 0}"
+        name="files"
+        class="el-upload__input upload-input"
+      />
     </div>
     <Model
       :visible="previewVisible"
@@ -48,9 +95,9 @@
       width="600px"
       form
     >
-      <img :src="previewUrl" alt="" style="display: block;width: 80%;margin: 0 auto;">
+      <img :src="previewUrl" alt style="display: block;width: 80%;margin: 0 auto;" />
       <template slot="action">
-        <el-button size="mini" @click="previewVisible = false">关闭</el-button>
+        <el-button size="mini" @click="previewVisible = false">關閉</el-button>
       </template>
     </Model>
   </div>
@@ -58,186 +105,217 @@
 
 <script>
 // import Viewer from 'viewerjs'
-import Draggable from 'vuedraggable'
-import Model from './Model'
+import Draggable from "vuedraggable";
+import Model from "./Model";
 // import * as qiniu from 'qiniu-js'
 // require('viewerjs/dist/viewer.css')
 export default {
   components: {
     Draggable,
-    Model
+    Model,
   },
   props: {
     value: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     width: {
       type: Number,
-      default: 100
+      default: 100,
     },
     height: {
       type: Number,
-      default: 100
+      default: 100,
     },
     token: {
       type: String,
-      default: ''
+      default: "",
     },
     domain: {
       type: String,
-      default: ''
+      default: "",
     },
     multiple: {
       type: Boolean,
-      default: false
+      default: false,
     },
     length: {
       type: Number,
-      default: 9
+      default: 9,
     },
     isQiniu: {
       type: Boolean,
-      default: false
+      default: false,
     },
     isDelete: {
       type: Boolean,
-      default: false
+      default: false,
     },
     min: {
       type: Number,
-      default: 0
+      default: 0,
     },
     meitu: {
       type: Boolean,
-      default: false
+      default: false,
     },
     isEdit: {
       type: Boolean,
-      default: false
+      default: false,
     },
     action: {
       type: String,
-      default: ''
+      default: "",
     },
     disabled: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
       previewVisible: false,
-      previewUrl: '',
-      fileList: this.value.map(item => {
+      previewUrl: "",
+      fileList: this.value.map((item) => {
         return {
-          key: item.key ? item.key : (new Date().getTime()) + '_' + Math.ceil(Math.random() * 99999),
+          key: item.key
+            ? item.key
+            : new Date().getTime() + "_" + Math.ceil(Math.random() * 99999),
           url: item.url,
           isImg: item.isImg,
           percent: item.percent ? item.percent : 100,
-          status: item.status ? item.status : 'success'
-        }
+          status: item.status ? item.status : "success",
+        };
       }),
       viewer: null,
-      uploadId: 'upload_' + new Date().getTime(),
+      uploadId: "upload_" + new Date().getTime(),
       editIndex: -1,
-      meituIndex: -1
-    }
+      meituIndex: -1,
+    };
   },
   computed: {
     miniWidth() {
       if (this.width > this.height) {
-        return this.height
+        return this.height;
       } else {
-        return this.width
+        return this.width;
       }
-    }
+    },
   },
   mounted() {
-    this.$emit('input', this.fileList)
+    this.$emit("input", this.fileList);
   },
   methods: {
     handleChange() {
-      const files = this.$refs.uploadInput.files
-      console.log('files>>>>>', files)
+      const files = this.$refs.uploadInput.files;
+      console.log("files>>>>>", files);
       for (let i = 0; i < files.length; i++) {
-        const file = files[i]
-        const reader = new FileReader()
-        const key = (new Date().getTime()) + '_' + Math.ceil(Math.random() * 99999)
-        reader.readAsDataURL(file)
+        const file = files[i];
+        const reader = new FileReader();
+        const key =
+          new Date().getTime() + "_" + Math.ceil(Math.random() * 99999);
+        reader.readAsDataURL(file);
         reader.onload = () => {
           if (this.editIndex >= 0) {
             this.$set(this.fileList, this.editIndex, {
               key,
               url: reader.result,
               percent: 0,
-              status: 'uploading'
-            })
-            this.editIndex = -1
+              status: "uploading",
+            });
+            this.editIndex = -1;
           } else {
             this.fileList.push({
               key,
               url: reader.result,
               percent: 0,
-              status: 'uploading'
-            })
+              status: "uploading",
+            });
           }
           this.$nextTick(() => {
             if (this.isQiniu) {
-              this.uplaodAction2(reader.result, file, key)
+              this.uplaodAction2(reader.result, file, key);
             } else {
-              this.uplaodAction(reader.result, file, key)
+              this.uplaodAction(reader.result, file, key);
             }
-          })
-        }
+          });
+        };
       }
-      this.$refs.uploadInput.value = []
+      this.$refs.uploadInput.value = [];
     },
     uplaodAction(res, file, key) {
       // const changeIndex = this.fileList.findIndex(item => item.key === key)
-      const xhr = new XMLHttpRequest()
+      const xhr = new XMLHttpRequest();
 
-      const url = this.action
-      xhr.open('POST', url, true)
+      const url = this.action;
+      xhr.open("POST", url, true);
       // xhr.setRequestHeader('Content-Type', 'multipart/form-data')
-      const formData = new FormData()
-      formData.append('files', file)
-      xhr.send(formData)
+      const formData = new FormData();
+      formData.append("files", file);
+      xhr.send(formData);
       xhr.onreadystatechange = () => {
         if (xhr.readyState === 4) {
-          const resData = JSON.parse(xhr.response)
-          console.log('resData', resData)
+          const resData = JSON.parse(xhr.response);
+          console.log("resData", resData);
           if (resData && resData.result && resData.result.length > 0) {
-            this.$set(this.fileList, this.fileList.findIndex(item => item.key === key), {
-              ...this.fileList[this.fileList.findIndex(item => item.key === key)],
-              url: `${process.env.BASE_IMG_URL}/${resData.result[0].filePath}`,
-              isImg: ['.jpg', '.jpeg', '.png', '.svg', '.gif'].indexOf(resData.result[0].fileType) >= 0 || false,
-              percent: 100
-            })
+            this.$set(
+              this.fileList,
+              this.fileList.findIndex((item) => item.key === key),
+              {
+                ...this.fileList[
+                  this.fileList.findIndex((item) => item.key === key)
+                ],
+                url: `${process.env.BASE_IMG_URL}/${resData.result[0].filePath}`,
+                isImg:
+                  [".jpg", ".jpeg", ".png", ".svg", ".gif"].indexOf(
+                    resData.result[0].fileType
+                  ) >= 0 || false,
+                percent: 100,
+              }
+            );
             setTimeout(() => {
-              this.$set(this.fileList, this.fileList.findIndex(item => item.key === key), {
-                ...this.fileList[this.fileList.findIndex(item => item.key === key)],
-                status: 'success'
-              })
-              this.$emit('input', this.fileList)
-            }, 200)
+              this.$set(
+                this.fileList,
+                this.fileList.findIndex((item) => item.key === key),
+                {
+                  ...this.fileList[
+                    this.fileList.findIndex((item) => item.key === key)
+                  ],
+                  status: "success",
+                }
+              );
+              this.$emit("input", this.fileList);
+            }, 200);
           } else {
-            this.$set(this.fileList, this.fileList.findIndex(item => item.key === key), {
-              ...this.fileList[this.fileList.findIndex(item => item.key === key)],
-              status: 'error'
-            })
-            this.fileList.splice(this.fileList.findIndex(item => item.key === key), 1)
+            this.$set(
+              this.fileList,
+              this.fileList.findIndex((item) => item.key === key),
+              {
+                ...this.fileList[
+                  this.fileList.findIndex((item) => item.key === key)
+                ],
+                status: "error",
+              }
+            );
+            this.fileList.splice(
+              this.fileList.findIndex((item) => item.key === key),
+              1
+            );
           }
-          console.log('fileList>>>>>>>>>>>>>>', this.fileList)
+          console.log("fileList>>>>>>>>>>>>>>", this.fileList);
         }
-      }
+      };
       xhr.onprogress = (res) => {
-        console.log('res>>>>>>>>.1', res)
+        console.log("res>>>>>>>>.1", res);
         if (res.total && res.loaded) {
-          console.log('res>>>>>>>>.2', res)
-          this.$set(this.fileList[this.fileList.findIndex(item => item.key === key)], 'percent', res.loaded / res.total * 100)
+          console.log("res>>>>>>>>.2", res);
+          this.$set(
+            this.fileList[this.fileList.findIndex((item) => item.key === key)],
+            "percent",
+            (res.loaded / res.total) * 100
+          );
         }
-      }
+      };
     },
     uplaodAction2() {
       // const _this = this
@@ -276,59 +354,65 @@ export default {
       // })
     },
     handleRemove(key) {
-      this.fileList.splice(this.fileList.findIndex(item => item.key === key), 1)
+      this.fileList.splice(
+        this.fileList.findIndex((item) => item.key === key),
+        1
+      );
     },
     handleEdit(key) {
-      this.editIndex = this.fileList.findIndex(item => item.key === key)
+      this.editIndex = this.fileList.findIndex((item) => item.key === key);
 
-      this.$refs.uploadInput.click()
+      this.$refs.uploadInput.click();
     },
     handleMeitu(key) {
-      this.$emit('on-meitu', this.fileList.findIndex(item => item.key === key))
+      this.$emit(
+        "on-meitu",
+        this.fileList.findIndex((item) => item.key === key)
+      );
     },
     handleAdd() {
       if (!this.disabled) {
-        this.editIndex = -1
-        this.$refs.uploadInput.click()
+        this.editIndex = -1;
+        this.$refs.uploadInput.click();
       }
     },
     handlePreviewFile(item) {
       if (!item.isImg) {
-        window.location.href = item.url
-        return
+        window.location.href = item.url;
+        return;
       }
-      this.previewVisible = true
-      this.previewUrl = `${item.url}`
-    }
+      this.previewVisible = true;
+      this.previewUrl = `${item.url}`;
+    },
   },
   watch: {
-    'fileList': {
+    fileList: {
       deep: true,
       handler() {
         // this.$emit('input', this.fileList)
-      }
-    }
-  }
-}
+      },
+    },
+  },
+};
 </script>
 
 <style lang="scss">
-.img-uplaod-container{
-  .is-disabled{
+.img-uplaod-container {
+  .is-disabled {
     position: relative;
-    &::after{
+    &::after {
       position: absolute;
       top: 0;
       bottom: 0;
       left: 0;
       right: 0;
       // background: rgba(0,0,0,.1);
-      content: '';
+      content: "";
       display: block;
-      cursor:not-allowed;
+      cursor: not-allowed;
     }
   }
-  .upload-file{
+  .upload-file {
     margin: 0 10px 10px 0;
     display: inline-flex;
     justify-content: center;
@@ -341,30 +425,30 @@ export default {
     box-sizing: border-box;
     position: relative;
     vertical-align: top;
-    &:hover{
-      .uplaod-action{
+    &:hover {
+      .uplaod-action {
         display: flex;
       }
     }
-    .uplaod-action{
+    .uplaod-action {
       position: absolute;
       // top: 0;
       // height: 30px;
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0, 0, 0, 0.6);
       display: none;
       justify-content: center;
       align-items: center;
-      i{
+      i {
         color: #fff;
         cursor: pointer;
         margin: 0 5px;
       }
     }
-    &.is-success{
-      .item-status{
+    &.is-success {
+      .item-status {
         position: absolute;
         right: -15px;
         top: -6px;
@@ -373,8 +457,8 @@ export default {
         background: #13ce66;
         text-align: center;
         transform: rotate(45deg);
-        box-shadow: 0 0 1pc 1px rgba(0,0,0,.2);
-        &>i{
+        box-shadow: 0 0 1pc 1px rgba(0, 0, 0, 0.2);
+        & > i {
           font-size: 12px;
           margin-top: 11px;
           color: #fff;
@@ -382,41 +466,41 @@ export default {
         }
       }
     }
-    &.uploading{
-      &:before{
+    &.uploading {
+      &:before {
         display: block;
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(0,0,0,0.3);
+        background: rgba(0, 0, 0, 0.3);
       }
     }
-    .upload-progress{
+    .upload-progress {
       position: absolute;
-      .el-progress__text{
+      .el-progress__text {
         color: #fff;
         font-size: 16px !important;
       }
     }
-    img{
+    img {
       max-width: 100%;
       max-height: 100%;
       vertical-align: middle;
     }
   }
-  .el-upload--picture-card{
+  .el-upload--picture-card {
     position: relative;
     overflow: hidden;
-    .el-icon-plus{
+    .el-icon-plus {
       position: absolute;
       top: 50%;
       left: 50%;
     }
   }
-  .upload-input{
+  .upload-input {
     position: absolute;
     top: 0;
     left: 0;
@@ -426,15 +510,15 @@ export default {
     opacity: 0;
     cursor: pointer;
   }
-  .drag-img-list{
+  .drag-img-list {
     display: inline;
-    .ghost{
+    .ghost {
       position: relative;
       &::after {
         width: 100%;
         height: 100%;
         display: block;
-        content: '';
+        content: "";
         background: #fbfdff;
         position: absolute;
         top: 0;
@@ -444,12 +528,12 @@ export default {
         border: 1px dashed #3bb3c2;
       }
     }
-    &>div{
+    & > div {
       cursor: move;
     }
   }
 }
-.viewer-container{
+.viewer-container {
   z-index: 9999 !important;
 }
 </style>

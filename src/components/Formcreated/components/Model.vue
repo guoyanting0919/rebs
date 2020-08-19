@@ -9,16 +9,21 @@
     :width="width"
     ref="elDialog"
     :id="id"
-    >
+  >
     <span v-if="show">
       <slot></slot>
     </span>
 
-    <span v-if="action" slot="footer" class="dialog-footer" v-loading="loading"
-      :element-loading-text="loadingText">
+    <span
+      v-if="action"
+      slot="footer"
+      class="dialog-footer"
+      v-loading="loading"
+      :element-loading-text="loadingText"
+    >
       <slot name="action">
         <el-button @click="close">取消</el-button>
-        <el-button type="primary" @click="submit" >确定</el-button>
+        <el-button type="primary" @click="submit">確定</el-button>
       </slot>
     </span>
   </el-dialog>
@@ -30,97 +35,96 @@ export default {
     visible: Boolean,
     loadingText: {
       type: String,
-      default: ''
+      default: "",
     },
     title: {
       type: String,
-      default: ''
+      default: "",
     },
     width: {
       type: String,
-      default: '600px'
+      default: "600px",
     },
     form: {
       type: Boolean,
-      default: true
+      default: true,
     },
     action: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   computed: {
     show() {
       if (this.form) {
-        return this.showForm
+        return this.showForm;
       } else {
-        return true
+        return true;
       }
-    }
+    },
   },
   data() {
     return {
       loading: false,
       dialogVisible: this.visible,
-      id: 'dialog_' + new Date().getTime(),
-      showForm: false
-    }
+      id: "dialog_" + new Date().getTime(),
+      showForm: false,
+    };
   },
   methods: {
     close() {
-      this.dialogVisible = false
+      this.dialogVisible = false;
     },
     submit() {
-      this.loading = true
-      this.$emit('on-submit')
+      this.loading = true;
+      this.$emit("on-submit");
     },
     end() {
-      this.loading = false
-    }
+      this.loading = false;
+    },
   },
-  mounted() {
-  },
+  mounted() {},
   watch: {
     dialogVisible(val) {
       if (!val) {
-        this.loading = false
-        this.$emit('on-close')
+        this.loading = false;
+        this.$emit("on-close");
         setTimeout(() => {
-          this.showForm = false
-        }, 300)
+          this.showForm = false;
+        }, 300);
       } else {
-        this.showForm = true
+        this.showForm = true;
       }
     },
     visible(val) {
-      this.dialogVisible = val
-    }
-  }
-}
+      this.dialogVisible = val;
+    },
+  },
+};
 </script>
 
 <style lang="scss">
-.cus-dialog-container{
-  .el-dialog__footer{
+.cus-dialog-container {
+  .el-dialog__footer {
     margin: 0 20px;
     // border-top: 1px dashed #ccc;
     padding: 15px 0 16px;
     text-align: center;
     position: relative;
-    .dialog-footer{
+    .dialog-footer {
       display: block;
-      .circular{
+      .circular {
         display: inline-block;
         vertical-align: middle;
         margin-right: 5px;
         width: 24px;
         height: 24px;
       }
-      .el-loading-text{
+      .el-loading-text {
         display: inline-block;
         vertical-align: middle;
       }
-      .el-loading-spinner{
+      .el-loading-spinner {
         margin-top: -12px;
       }
     }

@@ -1,5 +1,5 @@
 import request from "@/utils/request";
-import { getToken } from "@/utils/auth"; // 验权
+import { getToken } from "@/utils/auth"; // 驗權
 
 export function login(username, password) {
   return request({

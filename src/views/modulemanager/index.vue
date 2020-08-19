@@ -8,7 +8,7 @@
           prefix-icon="el-icon-search"
           style="width: 200px;margin-bottom: 0;"
           class="filter-item"
-          :placeholder="'关键字'"
+          :placeholder="'關鍵字'"
           v-model="listQuery.key"
         ></el-input>
 
@@ -27,7 +27,7 @@
         <el-col :span="10" class="fh ls-border">
           <el-card shadow="never" class="card-body-none fh" style="overflow-y: auto">
             <div slot="header" class="clearfix">
-              <el-button type="text" style="padding: 0 11px" @click="getAllMenus">所有菜单>></el-button>
+              <el-button type="text" style="padding: 0 11px" @click="getAllMenus">所有菜單>></el-button>
             </div>
             <tree-table
               highlight-current-row
@@ -67,7 +67,7 @@
                 </template>
               </el-table-column>
 
-              <el-table-column min-width="50px" :label="'名称'">
+              <el-table-column min-width="50px" :label="'名稱'">
                 <template slot-scope="scope">
                   <span>{{scope.row.name}}</span>
                 </template>
@@ -79,7 +79,7 @@
                 </template>
               </el-table-column>
 
-              <el-table-column min-width="80px" :label="'样式'">
+              <el-table-column min-width="80px" :label="'樣式'">
                 <template slot-scope="scope">
                   <span>{{scope.row.class}}</span>
                 </template>
@@ -107,7 +107,7 @@
         </el-col>
       </el-row>
 
-      <!--模块编辑对话框-->
+      <!--模塊編輯對話框-->
       <el-dialog
         v-el-drag-dialog
         class="dialog-mini"
@@ -125,28 +125,28 @@
           <el-form-item size="small" :label="'Id'" prop="id" v-show="dialogStatus=='update'">
             <span>{{temp.id}}</span>
           </el-form-item>
-          <el-form-item size="small" :label="'层级ID'" v-show="dialogStatus=='update'">
+          <el-form-item size="small" :label="'層級ID'" v-show="dialogStatus=='update'">
             <span>{{temp.cascadeId}}</span>
           </el-form-item>
-          <el-form-item size="small" :label="'名称'" prop="name">
+          <el-form-item size="small" :label="'名稱'" prop="name">
             <el-input v-model="temp.name"></el-input>
           </el-form-item>
           <el-form-item size="small" :label="'排序'">
             <el-input-number v-model="temp.sortNo" :min="1" :max="20"></el-input-number>
           </el-form-item>
-          <el-form-item size="small" :label="'是否系统'" prop="isSys">
+          <el-form-item size="small" :label="'是否系統'" prop="isSys">
             <el-switch v-model="temp.isSys" active-color="#13ce66" inactive-color="#ff4949"></el-switch>
           </el-form-item>
-          <el-form-item size="small" :label="'模块标识'">
+          <el-form-item size="small" :label="'模塊標識'">
             <el-input v-model="temp.code"></el-input>
           </el-form-item>
 
-          <el-form-item size="small" :label="'图标'">
+          <el-form-item size="small" :label="'圖標'">
             <el-popover
               placement="top-start"
               width="400"
               trigger="click"
-              content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
+              content="這是一段內容,這是一段內容,這是一段內容,這是一段內容。"
             >
               <el-input
                 slot="reference"
@@ -173,7 +173,7 @@
             <el-input v-model="temp.url"></el-input>
           </el-form-item>
 
-          <el-form-item size="mini" :label="'上级机构'">
+          <el-form-item size="mini" :label="'上級機構'">
             <treeselect
               ref="modulesTree"
               :normalizer="normalizer"
@@ -190,11 +190,11 @@
         </el-form>
         <div slot="footer">
           <el-button size="mini" @click="dialogFormVisible = false">取消</el-button>
-          <el-button size="mini" v-if="dialogStatus=='create'" type="primary" @click="createData">确认</el-button>
-          <el-button size="mini" v-else type="primary" @click="updateData">确认</el-button>
+          <el-button size="mini" v-if="dialogStatus=='create'" type="primary" @click="createData">確認</el-button>
+          <el-button size="mini" v-else type="primary" @click="updateData">確認</el-button>
         </div>
       </el-dialog>
-      <!--菜单编辑对话框-->
+      <!--菜單編輯對話框-->
       <el-dialog
         v-el-drag-dialog
         class="dialog-mini"
@@ -213,21 +213,21 @@
             <span>{{menuTemp.id}}</span>
           </el-form-item>
 
-          <el-form-item size="small" :label="'名称'" prop="name">
+          <el-form-item size="small" :label="'名稱'" prop="name">
             <el-input v-model="menuTemp.name"></el-input>
           </el-form-item>
           <el-form-item size="small" :label="'DOM ID'">
             <el-input v-model="menuTemp.domId"></el-input>
           </el-form-item>
-          <el-form-item size="small" :label="'样式'">
+          <el-form-item size="small" :label="'樣式'">
             <el-input v-model="menuTemp.class"></el-input>
           </el-form-item>
-          <el-form-item size="small" :label="'图标'">
+          <el-form-item size="small" :label="'圖標'">
             <el-popover
               placement="top-start"
               width="400"
               trigger="click"
-              content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
+              content="這是一段內容,這是一段內容,這是一段內容,這是一段內容。"
             >
               <el-input
                 slot="reference"
@@ -252,10 +252,10 @@
           <el-form-item size="small" :label="'排序'">
             <el-input-number v-model="menuTemp.sort" :min="0" :max="10"></el-input-number>
           </el-form-item>
-          <el-form-item size="small" :label="'备注'">
+          <el-form-item size="small" :label="'備註'">
             <el-input v-model="menuTemp.remark"></el-input>
           </el-form-item>
-          <el-form-item size="small" :label="'所属模块'">
+          <el-form-item size="small" :label="'所屬模塊'">
             <treeselect
               ref="menuModulesTree"
               :normalizer="normalizer"
@@ -276,8 +276,8 @@
             v-if="dialogMenuStatus=='create'"
             type="primary"
             @click="addMenu"
-          >确认</el-button>
-          <el-button size="mini" v-else type="primary" @click="updateMenu">确认</el-button>
+          >確認</el-button>
+          <el-button size="mini" v-else type="primary" @click="updateMenu">確認</el-button>
         </div>
       </el-dialog>
     </div>
@@ -292,7 +292,7 @@ import * as modules from "@/api/modules";
 import * as login from "@/api/login";
 import Treeselect from "@riophae/vue-treeselect";
 import "@riophae/vue-treeselect/dist/vue-treeselect.css";
-import waves from "@/directive/waves"; // 水波纹指令
+import waves from "@/directive/waves"; // 水波紋指令
 import Sticky from "@/components/Sticky";
 import permissionBtn from "@/components/PermissionBtn";
 import elDragDialog from "@/directive/el-dragDialog";
@@ -314,7 +314,7 @@ export default {
     return {
       iconData: iconData,
       normalizer(node) {
-        // treeselect定义字段
+        // treeselect定義字段
         return {
           label: node.name,
           id: node.id,
@@ -324,11 +324,11 @@ export default {
       columns: [
         // treetable的列名
         {
-          text: "模块名称",
+          text: "模塊名稱",
           value: "name",
         },
         {
-          text: "模块标识",
+          text: "模塊標識",
           value: "code",
         },
         {
@@ -336,14 +336,14 @@ export default {
           value: "url",
         },
       ],
-      selectMenus: [], // 菜单列表选中的值
+      selectMenus: [], // 菜單列表選中的值
       tableKey: 0,
-      list: [], // 菜单列表
+      list: [], // 菜單列表
       total: 0,
-      currentModule: null, // 左边模块treetable当前选中的项
+      currentModule: null, // 左邊模塊treetable當前選中的項
       listLoading: true,
       listQuery: {
-        // 查询条件
+        // 查詢條件
         page: 1,
         limit: 20,
         orgId: "",
@@ -352,10 +352,10 @@ export default {
       apps: [],
 
       showDescription: false,
-      modules: [], // 用户可访问到的模块列表
-      modulesTree: [], // 用户可访问到的所有模块组成的树
+      modules: [], // 用戶可訪問到的模塊列表
+      modulesTree: [], // 用戶可訪問到的所有模塊組成的樹
       temp: {
-        // 模块临时值
+        // 模塊臨時值
         id: undefined,
         cascadeId: "",
         url: "",
@@ -368,7 +368,7 @@ export default {
         isSys: false,
       },
       menuTemp: {
-        // 菜单临时值
+        // 菜單臨時值
         id: undefined,
         url: "",
         code: "",
@@ -377,22 +377,22 @@ export default {
         status: 0,
         sort: 0,
       },
-      dialogFormVisible: false, // 模块编辑框
+      dialogFormVisible: false, // 模塊編輯框
       dialogStatus: "",
-      dialogMenuVisible: false, // 菜单编辑框
+      dialogMenuVisible: false, // 菜單編輯框
       dialogMenuStatus: "",
 
-      chkRoot: false, // 根节点是否选中
-      treeDisabled: false, // 树选择框时候可用
+      chkRoot: false, // 根節點是否選中
+      treeDisabled: false, // 樹選擇框時候可用
       textMap: {
-        update: "编辑",
+        update: "編輯",
         create: "添加",
       },
       rules: {
         name: [
           {
             required: true,
-            message: "名称不能为空",
+            message: "名稱不能為空",
             trigger: "blur",
           },
         ],
@@ -408,7 +408,7 @@ export default {
       set(v) {
         this.chkRoot = v;
         if (v) {
-          this.temp.parentName = "根节点";
+          this.temp.parentName = "根節點";
           this.temp.parentId = null;
         }
       },
@@ -416,7 +416,7 @@ export default {
     modulesTreeRoot() {
       const root = [
         {
-          name: "根节点",
+          name: "根節點",
           parentId: "",
           id: "",
         },
@@ -432,7 +432,7 @@ export default {
       },
     },
     dpSelectModule: {
-      // 模块编辑框下拉选中的模块
+      // 模塊編輯框下拉選中的模塊
       get: function () {
         if (this.dialogStatus === "update") {
           return this.temp.parentId || "";
@@ -443,8 +443,8 @@ export default {
       set: function (v) {
         console.log("set org:" + v);
         if (v === undefined || v === null || !v) {
-          // 如果是根节点
-          this.temp.parentName = "根节点";
+          // 如果是根節點
+          this.temp.parentName = "根節點";
           this.temp.parentId = null;
           return;
         }
@@ -480,7 +480,7 @@ export default {
       this.$refs.mainTable.toggleRowSelection(row);
     },
     treeClick(data) {
-      // 左侧treetable点击事件
+      // 左側treetable點擊事件
       this.currentModule = data;
       this.currentModule.parent = null;
       this.getList();
@@ -501,7 +501,7 @@ export default {
         case "btnEdit":
           if (this.currentModule === null) {
             this.$message({
-              message: "只能选中一个进行编辑",
+              message: "只能選中一個進行編輯",
               type: "error",
             });
             return;
@@ -511,7 +511,7 @@ export default {
         case "btnDel":
           if (this.currentModule === null) {
             this.$message({
-              message: "至少删除一个",
+              message: "至少刪除一個",
               type: "error",
             });
             return;
@@ -524,7 +524,7 @@ export default {
         case "btnEditMenu":
           if (this.selectMenus.length !== 1) {
             this.$message({
-              message: "只能选中一个进行编辑",
+              message: "只能選中一個進行編輯",
               type: "error",
             });
             return;
@@ -534,7 +534,7 @@ export default {
         case "btnDelMenu":
           if (this.selectMenus.length < 1) {
             this.$message({
-              message: "至少删除一个",
+              message: "至少刪除一個",
               type: "error",
             });
             return;
@@ -555,7 +555,7 @@ export default {
       });
     },
     getModulesTree() {
-      var _this = this; // 记录vuecomponent
+      var _this = this; // 記錄vuecomponent
       login.getModules().then((response) => {
         _this.modules = response.result.map(function (item) {
           return {
@@ -614,9 +614,9 @@ export default {
       };
     },
 
-    // #region 模块管理
+    // #region 模塊管理
     handleCreate() {
-      // 弹出添加框
+      // 彈出添加框
       this.resetTemp();
       this.dialogStatus = "create";
       this.dialogFormVisible = true;
@@ -630,18 +630,18 @@ export default {
       this.$refs["dataForm"].validate((valid) => {
         if (valid) {
           if (this.temp.url.indexOf("http") > -1 && !this.temp.code) {
-            this.$message.error("请输入模块标识");
+            this.$message.error("請輸入模塊標識");
             return;
           }
           modules.add(this.temp).then((response) => {
-            // 需要回填数据库生成的数据
+            // 需要回填數據庫生成的數據
             this.temp.id = response.result.id;
             this.temp.cascadeId = response.result.cascadeId;
             this.list.unshift(this.temp);
             this.dialogFormVisible = false;
             this.$notify({
               title: "成功",
-              message: "创建成功",
+              message: "創建成功",
               type: "success",
               duration: 2000,
             });
@@ -651,10 +651,10 @@ export default {
       });
     },
     handleUpdate(row) {
-      // 弹出编辑框
+      // 彈出編輯框
       this.temp = Object.assign({}, row); // copy obj
       if (this.temp.children) {
-        // 点击含有子节点树结构时，带有的children会造成提交的时候json死循环
+        // 點擊含有子節點樹結構時，帶有的children會造成提交的時候json死循環
         this.temp.children = null;
       }
 
@@ -671,7 +671,7 @@ export default {
         if (valid) {
           const tempData = Object.assign({}, this.temp);
           if (tempData.url.indexOf("http") > -1 && !tempData.code) {
-            this.$message.error("请输入模块标识");
+            this.$message.error("請輸入模塊標識");
             return;
           }
           modules.update(tempData).then(() => {
@@ -696,11 +696,11 @@ export default {
       });
     },
     handleDelete(rows) {
-      // 多行删除
+      // 多行刪除
       modules.del([rows.id]).then(() => {
         this.$notify({
           title: "成功",
-          message: "删除成功",
+          message: "刪除成功",
           type: "success",
           duration: 2000,
         });
@@ -709,9 +709,9 @@ export default {
     },
     // #end region
 
-    // #region 菜单管理
+    // #region 菜單管理
     handleAddMenu() {
-      // 弹出添加框
+      // 彈出添加框
       this.resetMenuTemp();
       this.dialogMenuStatus = "create";
       this.dialogMenuVisible = true;
@@ -724,13 +724,13 @@ export default {
       this.$refs["menuForm"].validate((valid) => {
         if (valid) {
           modules.addMenu(this.menuTemp).then((response) => {
-            // 需要回填数据库生成的数据
+            // 需要回填數據庫生成的數據
             this.menuTemp.id = response.result.id;
             this.list.unshift(this.menuTemp);
             this.dialogMenuVisible = false;
             this.$notify({
               title: "成功",
-              message: "创建成功",
+              message: "創建成功",
               type: "success",
               duration: 2000,
             });
@@ -739,7 +739,7 @@ export default {
       });
     },
     handleEditMenu(row) {
-      // 弹出编辑框
+      // 彈出編輯框
       this.menuTemp = Object.assign({}, row); // copy obj
       this.dialogMenuStatus = "update";
       this.dialogMenuVisible = true;
@@ -773,11 +773,11 @@ export default {
       });
     },
     handleDelMenus(rows) {
-      // 多行删除
+      // 多行刪除
       modules.delMenu(rows.map((u) => u.id)).then(() => {
         this.$notify({
           title: "成功",
-          message: "删除成功",
+          message: "刪除成功",
           type: "success",
           duration: 2000,
         });

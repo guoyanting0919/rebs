@@ -11,11 +11,11 @@
       </div>
       <el-dropdown-menu class="user-dropdown" slot="dropdown">
         <el-dropdown-item command="handleGoProfile">
-          <span>个人中心</span>
+          <span>個人中心</span>
         </el-dropdown-item>
         <el-dropdown-item>
           <span>
-            切换主题
+            切換主題
             <el-switch
               :active-value="1"
               :inactive-value="0"
@@ -85,7 +85,7 @@ export default {
         this.signOutOidc();
       } else {
         this.$store.dispatch("LogOut").then(() => {
-          location.reload(); // 为了重新实例化vue-router对象 避免bug
+          location.reload(); // 為了重新實例化vue-router對象 避免bug
         });
       }
     },

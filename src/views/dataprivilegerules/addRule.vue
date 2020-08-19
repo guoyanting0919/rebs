@@ -4,45 +4,50 @@
   </div>
 </template>
 <script>
-import ruleItem from './ruleItem'
+import ruleItem from "./ruleItem";
 export default {
-  name: 'addRule',
+  name: "addRule",
   props: {
     dataSource: [String, Object],
-    propertyDatas: Array
+    propertyDatas: Array,
   },
   components: {
-    ruleItem
+    ruleItem,
   },
   watch: {
     dataSource() {
-      this.ruleForm = this.dataSource ? JSON.parse(this.dataSource) : Object.assign({}, this.ruleFormC)
-    }
+      this.ruleForm = this.dataSource
+        ? JSON.parse(this.dataSource)
+        : Object.assign({}, this.ruleFormC);
+    },
   },
   created() {
-    this.ruleForm = this.dataSource ? JSON.parse(this.dataSource) : Object.assign({}, this.ruleFormC)
+    this.ruleForm = this.dataSource
+      ? JSON.parse(this.dataSource)
+      : Object.assign({}, this.ruleFormC);
   },
   data() {
     return {
       ruleForm: {},
       ruleFormC: {
-        Operation: 'or',
-        Filters: [{
-          Key: '',
-          Value: '',
-          Contrast: '',
-          names: ''
-        }]
-      }
-    }
+        Operation: "or",
+        Filters: [
+          {
+            Key: "",
+            Value: "",
+            Contrast: "",
+            names: "",
+          },
+        ],
+      },
+    };
   },
-  computed: {
-  },
+  computed: {},
   methods: {
     saveRule() {
-      return this.ruleForm
-    }
-  }
-}
+      return this.ruleForm;
+    },
+  },
+};
 </script>
 

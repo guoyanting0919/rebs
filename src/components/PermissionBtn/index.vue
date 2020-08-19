@@ -15,7 +15,7 @@
           size="mini"
           style="margin-left: 10px;"
           :loading="excelLoading"
-        >导出EXCEL</el-button>
+        >導出EXCEL</el-button>
       </json-excel>
       <el-button
         v-else
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import waves from "@/directive/waves"; // 水波纹指令
+import waves from "@/directive/waves"; // 水波紋指令
 import JsonExcel from "vue-json-excel";
 export default {
   name: "permission-btn",
@@ -51,7 +51,7 @@ export default {
     },
   },
   data() {
-    // todo:兼容layui的样式、图标
+    // todo:兼容layui的樣式、圖標
     return {
       excelInfo: {
         json_fields: {},

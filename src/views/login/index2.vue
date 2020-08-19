@@ -204,40 +204,6 @@ export default {
     },
   },
   methods: {
-    // 帳號密碼登入
-    // handleLogin() {
-    //   const vm = this;
-    //   if (vm.passwordInput == "" || vm.accountInput == "") {
-    //     vm.$alertM.fire({
-    //       icon: "error",
-    //       title: "帳號密碼欄不得為空！",
-    //     });
-    //   } else {
-    //     // vm.$store.dispatch("loadingHandler", true);
-    //     vm.$api
-    //       .GetToken({
-    //         password: vm.passwordInput,
-    //         account: vm.accountInput,
-    //         appKey: "123321",
-    //       })
-    //       .then((res) => {
-    //         if (res.code == 200) {
-    //           window.localStorage.setItem("NTPC__Token", res.token);
-    //           vm.getUserInfoByToken();
-    //         } else {
-    //           vm.$alertM.fire({
-    //             icon: "error",
-    //             title: res.message,
-    //           });
-    //           //   vm.$store.dispatch("loadingHandler", false);
-    //         }
-    //       })
-    //       .catch((err) => {
-    //         console.log(err);
-    //       });
-    //   }
-    // },
-
     // 獲取用戶信息
     getUserInfoByToken() {
       const vm = this;

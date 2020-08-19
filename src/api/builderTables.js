@@ -1,70 +1,70 @@
-import request from '@/utils/request'
-// 加载列表
+import request from "@/utils/request";
+// 加載列表
 export function getList(params) {
   return request({
-    url: '/BuilderTables/Load',
-    method: 'get',
-    params
-  })
+    url: "/BuilderTables/Load",
+    method: "get",
+    params,
+  });
 }
-// 加载明细列表
+// 加載明細列表
 export function getDetailList(params) {
   return request({
-    url: '/BuilderTableColumns/Load',
-    method: 'get',
-    params
-  })
+    url: "/BuilderTableColumns/Load",
+    method: "get",
+    params,
+  });
 }
 
-// 创建一个代码生成的模版<br>会自动创建字段明细信息，添加成功后使用BuilderTableColumnsController.Load加载字段明细<returns>返回添加的模版ID</returns>
+// 創建一個代碼生成的模版<br>會自動創建字段明細信息，添加成功後使用BuilderTableColumnsController.Load加載字段明細<returns>返回添加的模版ID</returns>
 export function add(data) {
   return request({
-    url: '/BuilderTables/Add',
-    method: 'post',
-    data
-  })
+    url: "/BuilderTables/Add",
+    method: "post",
+    data,
+  });
 }
 
-// 只修改表信息，不会更新明细
+// 只修改表信息，不會更新明細
 export function update(data) {
   return request({
-    url: '/BuilderTables/Update',
-    method: 'post',
-    data
-  })
+    url: "/BuilderTables/Update",
+    method: "post",
+    data,
+  });
 }
 
-// 更新明细
+// 更新明細
 export function updateDetail(data) {
   return request({
-    url: '/BuilderTableColumns/Update',
-    method: 'post',
-    data
-  })
+    url: "/BuilderTableColumns/Update",
+    method: "post",
+    data,
+  });
 }
 
-// 批量删除代码生成模版和对应的字段信息
+// 批量刪除代碼生成模版和對應的字段信息
 export function del(data) {
   return request({
-    url: '/BuilderTables/Delete',
-    method: 'post',
-    data
-  })
+    url: "/BuilderTables/Delete",
+    method: "post",
+    data,
+  });
 }
-// 创建实体
+// 創建實體
 export function CreateEntity(data) {
   return request({
-    url: '/BuilderTables/CreateEntity',
-    method: 'post',
-    data
-  })
+    url: "/BuilderTables/CreateEntity",
+    method: "post",
+    data,
+  });
 }
 
-// 删除明细
+// 刪除明細
 export function delDetail(data) {
   return request({
-    url: '/BuilderTableColumns/Delete',
-    method: 'post',
-    data
-  })
+    url: "/BuilderTableColumns/Delete",
+    method: "post",
+    data,
+  });
 }
