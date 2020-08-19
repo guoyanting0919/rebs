@@ -1,76 +1,93 @@
 <template>
-	<div class="filter-items">
+  <div class="filter-items">
     <template v-for="btn of buttons">
       <json-excel
         :key="btn.Id"
         v-if="btn.domId === 'btnExport'"
         :fetch="fetchData"
-        :before-finish = "finishDownload"
-        class = "export-excel-wrapper"
-        :fields = "excelInfo.json_fields"
-        :name = "excelInfo.excelName">
-        <el-button :type="btn.class || 'primary'" size="mini" style="margin-left: 10px;" :loading="excelLoading">导出EXCEL</el-button>
+        :before-finish="finishDownload"
+        class="export-excel-wrapper"
+        :fields="excelInfo.json_fields"
+        :name="excelInfo.excelName"
+      >
+        <el-button
+          :type="btn.class || 'primary'"
+          size="mini"
+          style="margin-left: 10px;"
+          :loading="excelLoading"
+        >导出EXCEL</el-button>
       </json-excel>
-      <el-button v-else :type="btn.class" :size="size" v-bind:key="btn.Id" class="filter-item" @click="$emit('btn-event',btn.domId)"><i :class="`iconfont icon-${btn.icon}`"></i>{{btn.name}}</el-button>
+      <el-button
+        v-else
+        :type="btn.class"
+        :size="size"
+        v-bind:key="btn.Id"
+        class="filter-item"
+        @click="$emit('btn-event',btn.domId)"
+      >
+        <i :class="`iconfont icon-${btn.icon}`"></i>
+        {{btn.name}}
+      </el-button>
     </template>
-	</div>
+  </div>
 </template>
 
 <script>
-import waves from '@/directive/waves' // 水波纹指令
-import JsonExcel from 'vue-json-excel'
+import waves from "@/directive/waves"; // 水波纹指令
+import JsonExcel from "vue-json-excel";
 export default {
-  name: 'permission-btn',
+  name: "permission-btn",
   components: {
-    JsonExcel
+    JsonExcel,
   },
   props: {
     moduleName: {
       type: String,
-      required: true
+      required: true,
     },
     size: {
       type: String,
-      default: ''
-    }
+      default: "",
+    },
   },
   data() {
     // todo:兼容layui的样式、图标
     return {
       excelInfo: {
         json_fields: {},
-        excelName: '',
-        data: []
+        excelName: "",
+        data: [],
       },
       excelLoading: false,
-      buttons: []
-    }
+      buttons: [],
+    };
   },
   computed: {},
   directives: {
-    waves
+    waves,
   },
   mounted() {
-    var route = this.$route
-    var elements = route.meta.elements
+    var route = this.$route;
+    var elements = route.meta.elements;
     this.buttons = elements.sort((a, b) => {
-      return a.sort - b.sort
-    })
+      return a.sort - b.sort;
+    });
+    console.log(this.buttons);
   },
   methods: {
     fetchData() {
-      if(this.excelLoading) return
-      this.excelLoading = true
-      this.$emit('btn-event','btnExport', (val) => {
-        this.excelInfo = { ...val }
-      })
-      return this.excelInfo.data
+      if (this.excelLoading) return;
+      this.excelLoading = true;
+      this.$emit("btn-event", "btnExport", (val) => {
+        this.excelInfo = { ...val };
+      });
+      return this.excelInfo.data;
     },
-    finishDownload(){
-      this.excelLoading = false
-    }
-  }
-}
+    finishDownload() {
+      this.excelLoading = false;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

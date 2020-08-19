@@ -408,8 +408,9 @@ table thead th {
     text-align: center;
     float: left;
     .user-avatar {
-      width: 30px;
-      height: 30px;
+      width: 185px;
+      margin-bottom: 5px;
+      height: 50px;
       vertical-align: middle;
       margin-right: 5px;
     }
@@ -434,13 +435,17 @@ table thead th {
       }
     }
   }
+  .el-submenu__title:hover,
+  .el-menu-item:hover {
+    background-color: $menuHover !important;
+  }
   .navbar {
     border-bottom: 0 !important;
     background-color: #fff;
     box-shadow: 0 0 5px #222;
 
     .hamburger-container {
-      color: #f3971a;
+      color: #6b655c;
     }
     .avatar-container {
       color: #f3971a;

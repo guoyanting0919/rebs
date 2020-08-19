@@ -6,6 +6,7 @@
       :default-active="$route.path"
       :collapse="isCollapse"
       router
+      unique-opened
       :background-color="themeStatus ? '#fff' : ''"
       :text-color="themeStatus ? '#3b3b3b' : ''"
       :active-text-color="themeStatus ? '#f3971a' : '#f3971a'"

@@ -1,7 +1,7 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
     <div class="logo">
-      <img class="user-avatar" :src="logo" />NTPC
+      <img class="user-avatar" :src="logo" />
     </div>
     <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
     <el-dropdown class="avatar-container" @command="handleCommand" trigger="click">
@@ -35,7 +35,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import Hamburger from "@/components/Hamburger";
-import logo from "@/assets/logo.png?imageView2/1/w/80/h/80";
+import logo from "@/assets/images/logo1.png";
 
 export default {
   data: function () {
