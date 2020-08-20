@@ -1,8 +1,8 @@
 <template>
-  <div>
-    console{{testId}}
-    <i class="iconfont icon-iconfont icon-zhuye"></i>
+  <div class="flexContainer">
     <permission-btn moduleName="console" v-on:btn-event="onBtnClicked"></permission-btn>
+
+    <hr />
   </div>
 </template>
   
@@ -12,9 +12,7 @@ import permissionBtn from "@/components/PermissionBtn";
 export default {
   components: { permissionBtn },
   data() {
-    return {
-      testId: "",
-    };
+    return {};
   },
   methods: {
     onBtnClicked(domId) {
@@ -52,5 +50,18 @@ export default {
 };
 </script>
 
-<style>
+<style lang='scss'>
+.flexContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100%;
+
+  .box {
+    width: 100px;
+    height: 100px;
+    background: chocolate;
+  }
+}
 </style>

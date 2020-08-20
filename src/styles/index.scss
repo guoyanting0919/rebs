@@ -246,7 +246,7 @@ table thead th {
 
 .app-container {
   background-color: #efefef;
-  padding: 10px;
+  padding: 24px;
 }
 
 .el-card__header {
@@ -434,6 +434,9 @@ table thead th {
         background-color: $menuHover !important;
       }
     }
+  }
+  .el-submenu__title {
+    font-size: 1rem;
   }
   .el-submenu__title:hover,
   .el-menu-item:hover {

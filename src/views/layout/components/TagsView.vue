@@ -112,7 +112,7 @@ export default {
       this.selectedTag = tag;
       const offsetLeft = this.$el.getBoundingClientRect().left; // container margin left
       this.left = e.clientX - offsetLeft + 15; // 15: margin right
-      this.top = e.clientY;
+      this.top = e.clientY - 40;
     },
     closeMenu() {
       this.visible = false;
@@ -142,7 +142,9 @@ export default {
   margin-top: 45px;
   .tags-view-wrapper {
     background: #fff;
-    height: 34px;
+    height: 40px;
+    display: flex;
+    align-items: center;
     border-bottom: 1px solid #d8dce5;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 0 3px 0 rgba(0, 0, 0, 0.04);
     .tags-view-item {
@@ -155,8 +157,8 @@ export default {
       background: #fff;
       padding: 0 8px;
       font-size: 12px;
-      margin-left: 5px;
-      margin-top: 4px;
+      margin-left: 8px;
+      // margin-top: 4px;
       &.active {
         color: #fff;
         background-color: #409eff;

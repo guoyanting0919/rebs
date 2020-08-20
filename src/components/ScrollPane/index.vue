@@ -73,6 +73,9 @@ export default {
   width: 100%;
   .scroll-wrapper {
     position: absolute;
+    height: 40px;
+    display: flex;
+    align-items: center;
   }
 }
 </style>

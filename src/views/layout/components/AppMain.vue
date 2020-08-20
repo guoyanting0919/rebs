@@ -38,11 +38,12 @@ export default {
 <style scoped>
 .app-main {
   width: 100%;
-  height: calc(100% - 35px);
-  min-height: calc(100vh - 35px);
+  height: calc(100vh - 104px);
+  min-height: calc(100vh - 104px);
   position: relative;
   overflow: auto;
   background-color: #efefef;
   box-sizing: border-box;
+  /* padding: 1rem; */
 }
 </style>
