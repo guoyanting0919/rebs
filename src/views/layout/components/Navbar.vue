@@ -13,10 +13,11 @@
         <el-dropdown-item command="handleGoProfile">
           <span>個人中心</span>
         </el-dropdown-item>
-        <el-dropdown-item>
+        <el-dropdown-item disabled>
           <span>
             切換主題
             <el-switch
+              disabled
               :active-value="1"
               :inactive-value="0"
               style="margin-left: 5px;"

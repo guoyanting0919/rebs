@@ -404,11 +404,11 @@ table thead th {
     }
   }
   .logo {
-    width: 180px;
+    width: 200px;
     text-align: center;
     float: left;
     .user-avatar {
-      width: 185px;
+      width: 200px;
       margin-bottom: 5px;
       height: 50px;
       vertical-align: middle;
@@ -448,10 +448,10 @@ table thead th {
       color: #6b655c;
     }
     .avatar-container {
-      color: #f3971a;
+      color: $orange;
     }
     .logo {
-      color: #f3971a;
+      color: $orange;
     }
   }
 }

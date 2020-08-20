@@ -15,7 +15,7 @@
           size="mini"
           style="margin-left: 10px;"
           :loading="excelLoading"
-        >導出EXCEL</el-button>
+        >{{btn.name}}</el-button>
       </json-excel>
       <el-button
         v-else
@@ -68,6 +68,7 @@ export default {
   },
   mounted() {
     var route = this.$route;
+    console.log(route);
     var elements = route.meta.elements;
     this.buttons = elements.sort((a, b) => {
       return a.sort - b.sort;

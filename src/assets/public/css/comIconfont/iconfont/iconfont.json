@@ -6,9 +6,16 @@
   "description": "新北營運端",
   "glyphs": [
     {
+      "icon_id": "16657019",
+      "name": "system",
+      "font_class": "gear",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
       "icon_id": "1667804",
       "name": "主页",
-      "font_class": "zhuye",
+      "font_class": "home",
       "unicode": "e601",
       "unicode_decimal": 58881
     },
@@ -36,7 +43,7 @@
     {
       "icon_id": "8589090",
       "name": "撤销",
-      "font_class": "chexiao",
+      "font_class": "back",
       "unicode": "e875",
       "unicode_decimal": 59509
     },
@@ -50,14 +57,14 @@
     {
       "icon_id": "11502367",
       "name": "編輯",
-      "font_class": "bianji",
+      "font_class": "edit",
       "unicode": "e63a",
       "unicode_decimal": 58938
     },
     {
       "icon_id": "14812359",
       "name": "shanchu2",
-      "font_class": "shanchu1",
+      "font_class": "garbage",
       "unicode": "e602",
       "unicode_decimal": 58882
     }

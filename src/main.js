@@ -5,7 +5,8 @@ import "normalize.css/normalize.css"; // A modern alternative to CSS resets
 
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
-import "@/assets/custom-theme/index.css";
+// import "@/assets/custom-theme/index.css";
+import "@/assets/custom-theme/custom.scss";
 import locale from "element-ui/lib/locale/lang/zh-TW";
 import VueSweetalert2 from "vue-sweetalert2";
 import VueContextMenu from "vue-contextmenu";

@@ -22,7 +22,7 @@ export default {
     },
     zIndex: {
       type: Number,
-      default: 200,
+      default: 98,
     },
   },
   data() {

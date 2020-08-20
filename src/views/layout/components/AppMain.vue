@@ -10,38 +10,39 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from "vuex";
 export default {
-  name: 'AppMain',
+  name: "AppMain",
   computed: {
     ...mapGetters({
-      keepAliveData: 'keepAliveData'
+      keepAliveData: "keepAliveData",
     }),
     keepAliveDatas() {
-      return this.keepAliveData || []
+      return this.keepAliveData || [];
     },
     cachedViews() {
-      return this.$store.state.tagsView.cachedViews
+      return this.$store.state.tagsView.cachedViews;
     },
     key() {
-      return this.$route.fullPath
-    }
+      return this.$route.fullPath;
+    },
   },
   watch: {
     $route() {
-      this.$refs.appMain.scrollTop = 0
-    }
-  }
-}
+      this.$refs.appMain.scrollTop = 0;
+    },
+  },
+};
 </script>
 
 <style scoped>
 .app-main {
-    width: 100%;
-    height: calc(100% - 35px);
-    position: relative;
-    overflow: auto;
-		background-color: #efefef;
-    box-sizing: border-box;
+  width: 100%;
+  height: calc(100% - 35px);
+  min-height: calc(100vh - 35px);
+  position: relative;
+  overflow: auto;
+  background-color: #efefef;
+  box-sizing: border-box;
 }
 </style>

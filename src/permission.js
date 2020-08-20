@@ -10,6 +10,8 @@ const whiteList = [
   "/oidc-callback",
   "/swagger",
   "/usermanager/profile",
+  "/404",
+  "/401",
 ]; // 不重定向白名單
 router.beforeEach((to, from, next) => {
   NProgress.start();
