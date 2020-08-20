@@ -6,6 +6,41 @@
   "description": "新北營運端",
   "glyphs": [
     {
+      "icon_id": "6805502",
+      "name": "Excel",
+      "font_class": "Excel",
+      "unicode": "e998",
+      "unicode_decimal": 59800
+    },
+    {
+      "icon_id": "1350503",
+      "name": "sq-password",
+      "font_class": "password",
+      "unicode": "e679",
+      "unicode_decimal": 59001
+    },
+    {
+      "icon_id": "1393638",
+      "name": "download",
+      "font_class": "download",
+      "unicode": "e6e9",
+      "unicode_decimal": 59113
+    },
+    {
+      "icon_id": "5916422",
+      "name": "PDF",
+      "font_class": "PDF",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "6808504",
+      "name": "Word",
+      "font_class": "Word",
+      "unicode": "edd5",
+      "unicode_decimal": 60885
+    },
+    {
       "icon_id": "16657019",
       "name": "system",
       "font_class": "gear",
