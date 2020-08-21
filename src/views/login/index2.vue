@@ -55,7 +55,12 @@
       <!-- loginBox -->
       <div class="loginBox" v-if="isForget==1">
         <el-input placeholder="請輸入您的帳號" v-model="accountInput" clearable></el-input>
-        <el-input placeholder="請輸入您的密碼" v-model="passwordInput" show-password></el-input>
+        <el-input
+          placeholder="請輸入您的密碼"
+          @keyup.enter.native="handleLogin"
+          v-model="passwordInput"
+          show-password
+        ></el-input>
         <el-button type="warning" :loading="btnLoading" @click="handleLogin" round>登入</el-button>
         <div @click="isForget=2" class="forgetPw">忘記密碼?</div>
       </div>

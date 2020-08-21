@@ -2,9 +2,11 @@
 @import "./css/basic/variable";
 @import "./css/basic/mixin";
 @import "./css/basic/reset";
+@import "./css/basic/global";
 
 // views
 @import "./css/views/login";
 
 // components
 @import "./css/components/header";
+@import "./css/components/navbar";

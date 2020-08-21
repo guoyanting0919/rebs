@@ -4,6 +4,14 @@
       <img class="user-avatar" :src="logo" />
     </div>
     <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
+    <div class="breads">
+      <!-- breads -->
+      <el-breadcrumb separator="/" class="breadItems">
+        <el-breadcrumb-item class="breadLink" v-for="item in $route.matched" :key="item.path">
+          <router-link :to="item.path" class="breadLink">{{ item.meta.title || item.name }}</router-link>
+        </el-breadcrumb-item>
+      </el-breadcrumb>
+    </div>
     <el-dropdown class="avatar-container" @command="handleCommand" trigger="click">
       <div class="avatar-wrapper">
         歡迎您，{{name}}
@@ -59,6 +67,7 @@ export default {
   mounted() {
     this.theme = Number(this.themeStatus);
     this.toggleClass(document.body, "custom-theme");
+    // console.log(this.$route.matched);
   },
   methods: {
     ...mapActions(["signOutOidc", "saveTheme"]),
@@ -102,8 +111,22 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-.navbar {
-  display: flex;
-  align-items: center;
-}
+// .navbar {
+//   display: flex;
+//   align-items: center;
+// }
+// .breads {
+//   height: 64px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin-left: 0.5rem;
+//   @include rwd($md) {
+//     display: none;
+//   }
+
+//   .breadLink {
+//     pointer-events: none;
+//   }
+// }
 </style>

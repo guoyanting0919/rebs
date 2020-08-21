@@ -8706,6 +8706,34 @@ $infoHover: #3b91b6;
   .el-table__footer-wrapper,
   .el-table__header-wrapper {
     width: 100%;
+    &::-webkit-scrollbar {
+      //整停sb寬度
+      width: 8px;
+      height: 8px;
+    }
+    &::-webkit-scrollbar-track {
+      //軌道樣式
+      background-color: #fff;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #cccccc;
+      // border-radius: 4px;
+    }
+  }
+
+  .el-card {
+    &::-webkit-scrollbar {
+      //整停sb寬度
+      width: 8px;
+      height: 8px;
+    }
+    &::-webkit-scrollbar-track {
+      //軌道樣式
+      background-color: #fff;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #cccccc;
+    }
   }
 
   .el-table__footer-wrapper {

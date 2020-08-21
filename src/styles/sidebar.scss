@@ -104,13 +104,19 @@
       margin-left: 0px;
     }
     .sidebar-container {
-      transition: transform 0.28s;
+      transition: 0.3s;
       width: 240px !important;
+      @include rwd($md) {
+        position: absolute;
+      }
     }
     &.hideSidebar {
       .sidebar-container {
         width: 36px !important;
         transition-duration: 0.3s;
+        @include rwd($md) {
+          width: 0 !important;
+        }
         // transform: translate3d(-180px, 0, 0);//me
       }
     }

@@ -76,11 +76,11 @@ export const constantRouterMap = [
     component: Layout,
     redirect: "dashboard",
     name: "layout",
-    meta: { sortNo: 0 },
+    meta: { sortNo: 0, title: "系統" },
     children: [
       {
         path: "/dashboard",
-        name: "dashboard",
+        name: "主頁",
         meta: { title: "主頁", icon: "iconfont icon-home", sortNo: 0 },
         component: () => import("@/views/dashboard/index"),
       },
