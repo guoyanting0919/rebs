@@ -1,6 +1,7 @@
 import Vue from "vue";
 import axios from "axios";
-import { Message, MessageBox } from "element-ui";
+// import router from "../router/index";
+import { MessageBox } from "element-ui";
 import store from "../store";
 import { getToken } from "@/utils/auth";
 
@@ -9,6 +10,50 @@ const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // api的base_url
   timeout: 50000, // 請求超時時間
 });
+
+const tokenExpire = () => {
+  store.dispatch("FedLogOut").then(() => {
+    location.reload(); // 為了重新實例化vue-router對象 避免bug
+  });
+  // router.replace({
+  //   name: "Login",
+  // });
+};
+
+// 錯誤捕捉
+const errorHandle = (status, msg, response) => {
+  switch (status) {
+    case 400:
+      console.log(response);
+      // to404Page();
+      break;
+
+    case 401:
+      console.log(response);
+      tokenExpire();
+      break;
+
+    case 403:
+      console.log(response);
+      // to404Page();
+      break;
+
+    case 404:
+      console.log(response);
+      // to404Page();
+      break;
+
+    case 500:
+      console.log(response);
+      // to404Page();
+      break;
+
+    default:
+      console.log(response);
+      // to404Page();
+      break;
+  }
+};
 
 // request攔截器
 service.interceptors.request.use(
@@ -34,9 +79,6 @@ service.interceptors.request.use(
 // respone攔截器
 service.interceptors.response.use(
   (response) => {
-    /**
-     * code為非200是拋錯 可結合自己業務進行修改
-     */
     const res = response.data;
     if (res.code !== 200) {
       // 50008:非法的token; 50012:其他客戶端登錄了;  50014:Token 過期了;
@@ -62,18 +104,27 @@ service.interceptors.response.use(
       }
       return Promise.reject(res.message);
     } else {
+      // api回傳成功
       return response.data;
     }
   },
   (error) => {
-    console.log("err" + error); // for debug
-    Message({
-      message:
-        "請先啟動OpenAuth.WebApi，再刷新本頁面，異常詳情：" + error.message,
-      type: "error",
-      duration: 10 * 1000,
-    });
-    return Promise.reject(error);
+    // console.log("err" + error);
+    // Message({
+    //   message:
+    //     "請先啟動OpenAuth.WebApi，再刷新本頁面，異常詳情：" + error.message,
+    //   type: "error",
+    //   duration: 10 * 1000,
+    // });
+    // return Promise.reject(error);
+    const { response } = error;
+
+    if (response) {
+      errorHandle(response.status, response.data.error, response);
+      return Promise.reject(error);
+    } else {
+      return Promise.reject(error);
+    }
   }
 );
 

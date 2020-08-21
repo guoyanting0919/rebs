@@ -26,6 +26,7 @@ import Layout from "../views/layout/Layout";
 export const constantRouterMap = [
   {
     path: "/login",
+    name: "Login",
     component: () => import("@/views/login/index2"),
     meta: { sortNo: 0 },
     hidden: true,

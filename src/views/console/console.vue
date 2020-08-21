@@ -57,6 +57,7 @@ export default {
   align-items: center;
   flex-direction: column;
   min-height: 100%;
+  background-repeat: no-repeat;
 
   .box {
     width: 100px;

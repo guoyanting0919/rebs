@@ -4,8 +4,10 @@
       :background="background"
       :current-page.sync="currentPage"
       :page-size.sync="pageSize"
-      :layout="layout"
+      :layout="layoutData"
       :total="total"
+      :small="isSmall"
+      :pager-count="5"
       v-bind="$attrs"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
@@ -15,9 +17,18 @@
 
 <script>
 import { scrollTo } from "@/utils/scrollTo";
+import ResizeMixin from "./ResizeHandler";
 
 export default {
   name: "Pagination",
+  mixins: [ResizeMixin],
+  data() {
+    return {
+      isSmall: false,
+      layoutData: this.layout,
+      defaultLayout: " prev, pager, next",
+    };
+  },
   props: {
     total: {
       required: true,
@@ -39,7 +50,7 @@ export default {
     },
     layout: {
       type: String,
-      default: "total, sizes, prev, pager, next, jumper",
+      default: "total, sizes, prev, pager, next,jumper",
     },
     background: {
       type: Boolean,
@@ -55,6 +66,9 @@ export default {
     },
   },
   computed: {
+    device() {
+      return this.$store.state.app.device;
+    },
     currentPage: {
       get() {
         return this.page;
@@ -85,6 +99,15 @@ export default {
         scrollTo(0, 800);
       }
     },
+  },
+  mounted() {
+    console.log(this.device);
+    if (this.device === "mobile") {
+      this.isSmall = true;
+      console.log(this.$props.layout, this.layoutData);
+      // this.$props.layout = "total, sizes, prev, pager, next,";
+      this.layoutData = this.defaultLayout;
+    }
   },
 };
 </script>
