@@ -27,7 +27,7 @@ export const constantRouterMap = [
   {
     path: "/login",
     name: "Login",
-    component: () => import("@/views/login/index2"),
+    component: () => import("@/views/login/index3"),
     meta: { sortNo: 0 },
     hidden: true,
   },

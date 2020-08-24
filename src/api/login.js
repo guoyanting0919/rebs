@@ -8,7 +8,7 @@ export function login(username, password) {
     data: {
       Account: username,
       Password: password,
-      AppKey: "123321",
+      AppKey: process.env.VUE_APP_APP_KEY,
     },
   });
 }
