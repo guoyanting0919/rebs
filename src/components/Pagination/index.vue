@@ -26,7 +26,7 @@ export default {
     return {
       isSmall: false,
       layoutData: this.layout,
-      defaultLayout: " prev, pager, next",
+      defaultLayout: " prev, pager, next ,jumper",
     };
   },
   props: {
@@ -101,16 +101,16 @@ export default {
     },
   },
   mounted() {
-    console.log(this.device);
+    // console.log(this.device);
     if (this.device === "mobile") {
       this.isSmall = true;
-      console.log(this.$props.layout, this.layoutData);
+      // console.log(this.$props.layout, this.layoutData);
       // this.$props.layout = "total, sizes, prev, pager, next,";
       this.layoutData = this.defaultLayout;
     }
   },
 };
-</script>
+</script> 
 
 <style scoped>
 .pagination-container {
