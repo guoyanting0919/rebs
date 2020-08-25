@@ -146,17 +146,20 @@
           <el-form-item size="small" :label="'Id'" prop="id" v-show="dialogStatus=='update'">
             <el-input v-model="temp.id" :disabled="true" size="small" placeholder="系統自動處理"></el-input>
           </el-form-item>
-          <el-form-item size="small" :label="'賬號'" prop="account">
-            <el-input v-model="temp.account"></el-input>
-          </el-form-item>
           <el-form-item size="small" :label="'姓名'">
             <el-input v-model="temp.name"></el-input>
+          </el-form-item>
+          <el-form-item size="small" :label="'賬號'" prop="account">
+            <el-input v-model="temp.account"></el-input>
           </el-form-item>
           <el-form-item size="small" :label="'密碼'">
             <el-input
               v-model="temp.password"
               :placeholder="dialogStatus=='update'?'如果為空則不修改密碼':'如果為空則默認與賬號相同'"
             ></el-input>
+          </el-form-item>
+          <el-form-item size="small" :label="'單位代碼'">
+            <el-input v-model="temp.BizCode"></el-input>
           </el-form-item>
           <el-form-item size="small" :label="'狀態'">
             <el-select class="filter-item" v-model="temp.status" placeholder="Please select">
@@ -294,6 +297,7 @@ export default {
         account: "",
         name: "",
         password: "",
+        BizCode: "",
         status: 0,
       },
       dialogFormVisible: false,
@@ -494,6 +498,7 @@ export default {
     },
     handleUpdate(row) {
       // 彈出編輯框
+      console.log(row);
       this.temp = Object.assign({}, row); // copy obj
       this.dialogStatus = "update";
       this.dialogFormVisible = true;

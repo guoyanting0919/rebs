@@ -1,38 +1,39 @@
 import request from "@/utils/request";
 
 const api = {
-  // login
-  GetToken(params) {
+  // 獲取所有序號
+  GetRegisterNo(params) {
     return request({
-      url: "/Check/Login",
-      method: "post",
-      params,
-    });
-  },
-
-  GetUserInfo(params) {
-    return request({
-      url: "/Check/GetUserProfile",
+      url: "ActivityTbls/Load",
       method: "get",
       params,
     });
   },
-  GetRouterTree(params) {
+  // 創建活動序號
+  CreatRegisterNo(data) {
     return request({
-      url: "/Check/GetModulesTree",
-      method: "get",
-      params,
-    });
-  },
-
-  // forgetPw
-  ForgetPw(data) {
-    return request({
-      url: "/Users/ForgetPwd",
+      url: "ActivityTbls/GetNo",
       method: "post",
       data,
     });
   },
+
+  // GetRouterTree(params) {
+  //   return request({
+  //     url: "/Check/GetModulesTree",
+  //     method: "get",
+  //     params,
+  //   });
+  // },
+
+  // // forgetPw
+  // ForgetPw(data) {
+  //   return request({
+  //     url: "/Users/ForgetPwd",
+  //     method: "post",
+  //     data,
+  //   });
+  // },
 };
 
 export default api;
