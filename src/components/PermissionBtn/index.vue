@@ -68,12 +68,12 @@ export default {
   },
   mounted() {
     var route = this.$route;
-    console.log(route);
+    // console.log(route);
     var elements = route.meta.elements;
     this.buttons = elements.sort((a, b) => {
       return a.sort - b.sort;
     });
-    console.log(this.buttons);
+    // console.log(this.buttons);
   },
   methods: {
     fetchData() {
