@@ -30,6 +30,13 @@
             </template>
           </el-table-column>
         </el-table>
+        <pagination
+          v-show="total>0"
+          :total="total"
+          :page.sync="listQuery.page"
+          :limit.sync="listQuery.limit"
+          @pagination="handleCurrentChange"
+        />
       </div>
     </div>
   </div>
@@ -37,31 +44,68 @@
 <script>
 import Sticky from "@/components/Sticky";
 import permissionBtn from "@/components/PermissionBtn";
+import Pagination from "@/components/Pagination";
+import { mapGetters } from "vuex";
 export default {
   name: "registerNo",
   components: {
     Sticky,
     permissionBtn,
+    Pagination,
   },
   data() {
     return {
       list: [],
+      listQuery: {
+        // 查詢條件
+        page: 1,
+        limit: 20,
+        key: undefined,
+      },
+      total: 0,
       tableKey: 0,
       listLoading: false,
     };
   },
+  computed: {
+    ...mapGetters(["defaultorgid"]),
+  },
   methods: {
     getList() {
       const vm = this;
-      vm.$api.GetRegisterNo({ limit: 50 }).then((res) => {
+      vm.listLoading = true;
+      vm.$api.GetRegisterNo(vm.listQuery).then((res) => {
         console.log(res);
         vm.list = res.data;
+        vm.total = res.count;
+        vm.listLoading = false;
       });
     },
-    onBtnClicked() {},
+    handleCurrentChange(val) {
+      this.listQuery.page = val.page;
+      this.listQuery.limit = val.limit;
+      this.getList();
+    },
+    onBtnClicked(domId) {
+      console.log("you click:" + domId);
+      switch (domId) {
+        case "exportBtnPdf":
+          this.handleCreate();
+          break;
+        default:
+          break;
+      }
+    },
+    handleCreate() {
+      const vm = this;
+      vm.$api.CreatRegisterNo({ count: 1 }).then((res) => {
+        console.log(res);
+      });
+    },
   },
   created() {
     this.getList();
+    // console.log(this.defaultorgid);
   },
 };
 </script>
