@@ -12,7 +12,7 @@ const api = {
   // 創建活動序號
   CreatRegisterNo(data) {
     return request({
-      url: `ActivityTbls/GetNo?count=${data.count}`,
+      url: `ActivityTbls/GetNo`,
       method: "post",
       data,
     });

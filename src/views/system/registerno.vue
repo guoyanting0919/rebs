@@ -136,7 +136,7 @@ export default {
       }).then((result) => {
         if (result.value) {
           vm.$api
-            .CreatRegisterNo({ count: vm.creatCount })
+            .CreatRegisterNo({ count: vm.creatCount, Id: vm.defaultorgid })
             .then(() => {
               vm.$alertM.fire({
                 icon: "success",
