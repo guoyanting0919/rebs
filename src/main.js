@@ -10,7 +10,10 @@ import "@/assets/custom-theme/custom.scss";
 import locale from "element-ui/lib/locale/lang/zh-TW";
 import VueSweetalert2 from "vue-sweetalert2";
 import VueContextMenu from "vue-contextmenu";
-
+import VueQuillEditor from "vue-quill-editor";
+import "quill/dist/quill.core.css";
+import "quill/dist/quill.snow.css";
+import "quill/dist/quill.bubble.css";
 import "@/styles/index.scss"; // global css
 
 import App from "./App";
@@ -34,6 +37,7 @@ import FrmLeaveReqDetail from "@/views/forms/userDefine/frmLeaveReq/detail";
 Vue.use(ElementUI, { locale });
 Vue.use(VueSweetalert2);
 Vue.use(VueContextMenu);
+Vue.use(VueQuillEditor);
 
 const alertT = Vue.prototype.$swal.mixin({
   toast: true,
