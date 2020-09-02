@@ -17,6 +17,22 @@ const api = {
       data,
     });
   },
+  // 序號單補單
+  SubmitForm(data) {
+    return request({
+      url: `ActivityTbls/Update`,
+      method: "post",
+      data,
+    });
+  },
+  // 匯出抽獎名單  0->明碼 1->隱碼 2->總序號下載
+  // ExportExcel(params){
+  //   return request({
+  //     url: "ActivityTbls/GetExcel",
+  //     method: "get",
+  //     params,
+  //   });
+  // }
 
   // GetRouterTree(params) {
   //   return request({

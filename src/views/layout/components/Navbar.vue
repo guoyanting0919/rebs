@@ -1,7 +1,8 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
     <div class="logo">
-      <img class="user-avatar" :src="logo" />
+      <!-- <img class="user-avatar" :src="logo" /> -->
+      <div class="user-avatar-text">LOGO</div>
     </div>
     <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
     <div class="breads">

@@ -2,7 +2,7 @@
   <div class="flex-column">
     <div class="app-container flex-item">
       <el-row style="height: 100%;">
-        <el-col :span="15" style="height: 100%;">
+        <el-col :span="11" style="height: 100%;">
           <div class="bg-white" style="height: 50%;">
             <el-card shadow="never" class="body-small" style="height: 100%;overflow:auto;">
               <div slot="header" class="clearfix">
@@ -42,7 +42,7 @@
             </el-card>
           </div>
         </el-col>
-        <el-col :span="4" style="height: 100%;">
+        <el-col :span="6" style="height: 100%;">
           <div class="bg-white" style="height: 100%;">
             <el-card shadow="never" class="body-small" style="height: 100%;overflow:auto;">
               <div slot="header" class="clearfix">
@@ -58,7 +58,7 @@
             </el-card>
           </div>
         </el-col>
-        <el-col :span="5" style="height: 100%;border: 1px solid #EBEEF5;">
+        <el-col :span="7" style="height: 100%;border: 1px solid #EBEEF5;">
           <el-card shadow="never" class="body-small" style="height: 100%;overflow:auto;">
             <div slot="header" class="clearfix">
               <el-button type="text" style="padding: 0 11px">可訪問的機構（✅為當前默認,點擊可切換）</el-button>
@@ -192,7 +192,8 @@ export default {
           };
         });
         var orgstmp = JSON.parse(JSON.stringify(_this.orgs));
-        _this.orgsTree = listToTreeSelect(orgstmp);
+        // _this.orgsTree = listToTreeSelect(orgstmp);
+        _this.orgsTree = orgstmp;
       });
     },
   },
