@@ -1,6 +1,15 @@
 <template>
-  <div id="eventEdit">
-    <div class="eventEditContainer">
+  <div id="eventEdit" class="flex-column">
+    <sticky :className="'sub-navbar'">
+      <div class="filter-container">
+        <permission-btn
+          moduleName="RegisterNo"
+          :size="'mini'"
+          v-on:btn-event="onBtnClicked"
+        ></permission-btn>
+      </div>
+    </sticky>
+    <div class="eventEditContainer" style="overflow: auto;">
       <h1 class="editTitle">活動辦法編輯</h1>
       <div class="editorContainer">
         <quill-editor
@@ -17,12 +26,17 @@
   </div>
 </template>
 <script>
+import Sticky from "@/components/Sticky";
+import permissionBtn from "@/components/PermissionBtn";
 export default {
   name: "eventEdit",
-  components: {},
+  components: {
+    Sticky,
+    permissionBtn,
+  },
   data() {
     return {
-      content: "<h1>Some initial content</h1>",
+      content: "",
       disabled: false,
       editorOption: {
         modules: {
@@ -51,6 +65,35 @@ export default {
     },
   },
   methods: {
+    getContent() {
+      const vm = this;
+      vm.$api.GetActContent({ id: 987654321 }).then((res) => {
+        // console.log(res.result.contents);
+        vm.content = res.result.contents;
+      });
+    },
+    handleEdit() {
+      const vm = this;
+      vm.$api
+        .UpdateActContent({ id: 987654321, contents: vm.content })
+        .then((res) => {
+          console.log(res);
+          vm.$alertM.fire({
+            icon: "success",
+            title: res.message,
+          });
+        });
+    },
+    onBtnClicked(domId) {
+      console.log("you click:" + domId);
+      switch (domId) {
+        case "editBtn":
+          this.handleEdit();
+          break;
+        default:
+          break;
+      }
+    },
     onEditorReady() {
       // 準備編輯器
     },
@@ -59,15 +102,18 @@ export default {
       // this.editor.enable(false);
     }, // 獲得焦點事件
     onEditorChange() {}, // 內容改變事件
-    saveHtml: function (event) {
+    saveHtml: function(event) {
       alert(this.content);
       alert(event);
     },
   },
+  mounted() {
+    this.getContent();
+  },
 };
 </script>
 
-<style lang='scss'>
+<style lang="scss">
 #eventEdit {
   height: 100%;
 

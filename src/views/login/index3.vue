@@ -4,24 +4,36 @@
       <div class="filterBox">
         <!-- loginTitle -->
         <div class="loginTitle">
-          <h1 class="cityTitle">新北市政府</h1>
-          <h5 class="cityDescrip">長照交通接送統一預約服務及管理系統</h5>
+          <h1 class="cityTitle">手機回收網</h1>
+          <h5 class="cityDescrip">後台管理系統</h5>
         </div>
         <!-- adminLogin -->
-        <div class="adminLogin" v-if="isForget==1">
+        <div class="adminLogin" v-if="isForget == 1">
           <h2 class="adminLoginTitle">管理者Login</h2>
-          <h5 class="adminLoginDescrip">為了保障您的帳號安全，建議您最少於三個月變更一次密碼</h5>
+          <h5 class="adminLoginDescrip">
+            為了保障您的帳號安全，建議您最少於三個月變更一次密碼
+          </h5>
         </div>
         <!-- loginBox -->
-        <div class="loginBox" v-if="isForget==1">
-          <el-input placeholder="請輸入您的帳號" v-model="accountInput" clearable></el-input>
+        <div class="loginBox" v-if="isForget == 1">
+          <el-input
+            placeholder="請輸入您的帳號"
+            v-model="accountInput"
+            clearable
+          ></el-input>
           <el-input
             placeholder="請輸入您的密碼"
             @keyup.enter.native="handleLogin"
             v-model="passwordInput"
             show-password
           ></el-input>
-          <el-button type="success" :loading="btnLoading" @click="handleLogin" round>登入</el-button>
+          <el-button
+            type="success"
+            :loading="btnLoading"
+            @click="handleLogin"
+            round
+            >登入</el-button
+          >
         </div>
       </div>
     </div>
@@ -35,8 +47,8 @@ export default {
     return {
       // input
       isForget: 1,
-      accountInput: "System",
-      passwordInput: "123456",
+      accountInput: "",
+      passwordInput: "",
       accountForgetInput: "test",
       codeInput: "",
       newPwInput: "",
@@ -261,5 +273,4 @@ export default {
 };
 </script>
 
-<style lang='scss'>
-</style>
+<style lang="scss"></style>

@@ -25,6 +25,22 @@ const api = {
       data,
     });
   },
+  //活動辦法編輯
+  GetActContent(params) {
+    return request({
+      url: `ActContent/Get`,
+      method: "get",
+      params,
+    });
+  },
+  UpdateActContent(data) {
+    return request({
+      url: `ActContent/Update`,
+      method: "post",
+      data,
+    });
+  },
+
   // 匯出抽獎名單  0->明碼 1->隱碼 2->總序號下載
   // ExportExcel(params){
   //   return request({

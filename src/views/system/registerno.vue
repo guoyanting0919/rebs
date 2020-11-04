@@ -139,6 +139,11 @@ export default {
         case "exportBtnAll":
           this.handleExport(2);
           break;
+        case "exportBtnAct":
+          window.open(
+            "https://drive.google.com/drive/folders/1PSOfCVQbu-L1ni7gFxB2Gt1gU2H1b_gW"
+          );
+          break;
         default:
           break;
       }
@@ -168,7 +173,7 @@ export default {
               vm.getList();
               let url = res.data;
               console.log(url);
-              window.open(`http://phone.yummydesign.com.tw/${url}`);
+              window.open(`https://pra.ftis.org.tw/${url}`);
             })
             .catch(() => {
               vm.$alertM.fire({
