@@ -17,7 +17,7 @@
     "echarts": "3.8.5",
     "element-ui": "^2.10.1",
     "jquery": "^2.2.3",
-    "js-cookie": "2.2.0",
+    "js-cookie": "3.0.7",
     "jsplumb": "^2.14.7",
     "moment": "^2.26.0",
     "normalize.css": "7.0.0",
